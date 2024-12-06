@@ -1,14 +1,220 @@
 \section{Introduction}
 \label{sec:introduction}
 
-\hspace{1cm} This report is our final report of the project \textit{Poker Game} for the course \textit{Fundamentals of Programming - CSC10012}. The project is a poker game application that allows users to play poker with the computer and other players locally. The game is developed using C++ programming language and SDL2 library for graphical user interface. The project is divided into two main parts: core mechanics and graphical user interface. The core mechanics of the game are implemented using classes and structures.
+\hspace{1cm} This project focus on developing a Poker game using C++11 programming language. This was done in a group of two members, which are Le Nguyen Anh Tri and Lam Chi Hao (originally three members but Vo Nhat Tien was unable to contribute due to personal circumstances), for the final project of the course Fundamentals of Programming (CSC10012) at University of Science, Vietnam National University - Ho Chi Minh City.
 
 \vspace{0.5cm}
 
-\hspace{1cm} TODO: Add more information about the project, such as POKER RULE here.
+\hspace{1cm} Here is our group information for this project:
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{| m{1.75cm} | m{2cm} | m{5cm}| m{2.5cm} |} 
+    \hline
+    \textbf{} & \textbf{ID} & \textbf{Name} & \textbf{Title} \\ 
+    \hline
+    1 & 24127034 & Lam Chi Hao & Leader \\ 
+    \hline
+    2 & 24127567 & Le Nguyen Anh Tri & Member \\ 
+    \hline
+    \end{tabular}
+    \caption{Information of Group 02 member.}
+    \label{tab:group-information-table}
+\end{table}
 
 \vspace{0.5cm}
 
-\hspace{1cm} The report provides an overview of the project, including the project structure, the flowchart of the game, the structure of the game using SDL2 library, the implementation of the game, and the conclusion.
+\hspace{1cm} Group management and communication were pretty simple in our two-man team. Messenger served us for fast discussions, while GitHub was used for versioning and collaboration. This simplicity excluded any formal work management board or a developed communication plan. So, roles were divided quite clearly: one member of the team worked on core game logic, while the second was developing a GUI. Then we will take our time to review code, test, and make merges towards the end that would bring everything together as it needed.
 
-% End of Introduction.tex
+\vspace{0.5cm}
+
+\hspace{1cm} This is our table of contribution for this project, which shows the work we have done:
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|m{4cm}|m{2cm}|m{2cm}|m{2cm}| m{2cm}|}
+    \hline
+    \textbf{Problem} & \textbf{Rubric} & \textbf{24127034} & \textbf{24127557} & \textbf{24127567} \\
+    \hline
+    Standard features & - &  &  &  \\
+    \hline
+    Initialization & 20 & Score & Score & Score \\
+    \hline
+    Dealing & 20 & Score & Score & Score \\
+    \hline 
+    Game play & 20 & Score & Score & Score \\
+    \hline
+    Player's information & 20 & Score & Score & Score \\
+    \hline
+    Advanced features & - &  &  &  \\
+    \hline 
+    Draw poker & 30 & Score & Score & Score \\
+    \hline
+    5-card stud & 30 & Score & Score & Score \\
+    \hline
+    Color / Sound effects & 30 & Score & Score & Score \\
+    \hline
+    Leader board & 30 & Score & Score & Score \\
+    \hline
+    Creations & 30 / each & Score & Score & Score \\
+    \hline
+    Report & - &  &  &  \\
+    \hline
+     & 100 & Score & Score & Score \\
+    \hline
+    & Total & Score & Score & Score \\
+    \hline
+    \end{tabular}
+    \caption{Table of contribution}
+    \label{tab:contribution-table}
+\end{table}
+
+\hspace{1cm} This project breaks into three significant parts, which are the core game logic, the GUI, and the testing process, which make up the majority of the work. The core game logic was the most challenging part, as it required a deep understanding of the game rules and the ability to implement them in C++. The GUI was the most time-consuming part, as it required a lot of trial and error to get the layout and design right. The testing process was the most tedious part, as it required a lot of manual testing to ensure that the game was bug-free and worked as expected. Each part of the project had its challenges, but we were able to overcome them by working together and supporting each other throughout the process, more details will be discussed in each of the following sections.
+
+\vspace{0.5cm}
+
+\hspace{1cm} To enhance the project a little further, we used the SDL2 library to make a graphical user interface for the Poker game. Such GUI makes interactions with the game much easier and fun. It gives good visual clarity so that one understands the actual happening of the game better. In that way, by integrating SDL2 into our project, we made it more fun, not to mention challenging as well.
+
+\subsection{About the Poker Game}
+\label{subsec:about-the-poker-game}
+
+\subsubsection{Poker Hand Rakings}
+\label{subsubsec:poker-hand-rankings}
+
+\hspace{1cm} In Poker, a hand comprises five cards, irrespective of the cards being from a single deck or different decks provided the number is five altogether. Below are the official poker hand rankings, in order from highest to lowest.
+
+\begin{enumerate}
+    \item \textbf{Royal Flush}: The best possible poker hand, formed by the Ace, King, Queen, Jack, and 10, all of the same suit, for example, hearts. (Note: This hand is not implemented in our project since it is very rare and not called for in the project specification.)
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Royal Flush demonstration.}
+        \label{fig:royal-flush}
+    \end{figure}
+    \item \textbf{Straight Flush}: Five sequential cards all of one suit (such as 9, 8, 7, 6, 5, all hearts).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Straight Flush demonstration.}
+        \label{fig:straight-flush}
+    \end{figure}
+    \item \textbf{Four of a Kind}: Four cards of one rank (such as four Aces).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Four of a Kind demonstration.}
+        \label{fig:four-of-a-kind}
+    \end{figure}
+    \item \textbf{Full House}: Three cards of one rank and two cards of another rank (such as three Kings and two 4s).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Full House demonstration.}
+        \label{fig:full-house}
+    \end{figure}
+    \item \textbf{Flush}: Any five cards of the same suit, but not in sequential order (such as 2, 4, 6, 9, King, all in diamonds).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Flush demonstration.}
+        \label{fig:flush}
+    \end{figure}
+    \item \textbf{Straight}: Five consecutive cards of different suits, like 10 of hearts, Jack of spades, Queen of diamonds, King of clubs, Ace of hearts.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Straight demonstration.}
+        \label{fig:straight}
+    \end{figure}
+    \item \textbf{Three of a Kind}: Three cards of the same rank, such as three 7s.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Three of a Kind demonstration.}
+        \label{fig:three-of-a-kind}
+    \end{figure}
+    \item \textbf{Two Pair}: Two cards of one rank and two cards of another rank, such as two 5s and two 9s.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{Two Pair demonstration.}
+        \label{fig:two-pair}
+    \end{figure}
+    \item \textbf{One Pair}: Two cards of the same rank, such as two 8s.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{One Pair demonstration.}
+        \label{fig:one-pair}
+    \end{figure}
+    \item \textbf{High Card}: If no other hand is made, then the highest card played becomes the rank (such as King, 10, 8, 6, 4; this would be a "King-high" hand).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\textwidth]{figures/placeholder.png}
+        \caption{High Card demonstration.}
+        \label{fig:high-card}
+    \end{figure}
+\end{enumerate}
+
+\hspace{1cm} In all, there are 10 possible Poker hands ranging from the highest, Royal Flush, to the lowest, High Card. However, in this project we will implement only hands ranked from Straight Flush to High Card due to the requirements of our project, since it's too rare to happen and the project requirements are not including this as well.
+
+\subsubsection{Poker Game Variants}
+\label{subsubsec:poker-game-variants}
+
+\hspace{1cm} Based on those information, there are a lot of variants of Poker, and each has its own rules and way of playing. Some popular variants include:
+\begin{enumerate}
+    \item \textbf{Texas Hold'em}: Each player is dealt two private cards, and then five community cards are turned over on the table; players can use any number of these seven cards in attempting to build the highest possible five-card hand.
+    \item \textbf{Draw Poker}: Players are dealt five cards and can choose to discard and replace some of them (typically 1 to 3 cards at a time). After this, the player with the best hand wins. The gameplay is structured as follows:
+    \begin{itemize}
+        \item \textbf{Round 1}: All players are dealt 5 cards each. Players must now decide whether to play on by selecting "raise, "call," or "fold".
+        \item \textbf{Round 2}: Players can discard and replace one to three cards once (in some versions, if a player has an Ace, he/she can discard four cards and draw four new ones).
+        \item \textbf{Round 3}: Players decide again to either "raise," "call," or "fold" depending on their now improved hands.
+        \item \textbf{Round 4}: Hands are revealed, and the player with the highest hand wins.
+    \end{itemize}
+    \item \textbf{Stud Poker}: Some cards are dealt face up and others face down, with several rounds of betting. The highest five-card hand wins the game.
+    \item \textbf{Simplified Poker}: This is a Poker variant, included in the project requirements, is subject to the rules listed below: Each player is initially dealt 5 cards. The player with the highest-ranking hand wins. In case of a tie, when two players hold the same hand, it is won by the player with the highest-ranking card. If two or more players have the same hand and the same high card, then the pot is divided equally. In this project.
+\end{enumerate}
+
+\hspace{1cm} We are going to implement two game variants: Simplified Poker and Draw Poker. Even though the Simplified Poker game fulfilled all the basic requirements set in the project, we felt it was a bit simple and basic. In order to make the project exciting and challenging, we decided to implement the Draw Poker variant. This is an extension of the framework set by the Simplified Poker game, further allowing us to fulfill some of the advanced requirements stipulated in the project.
+
+\subsection{Implementation of the Poker Game}
+\label{subsec:implementation-of-the-poker-game}
+
+\hspace{1cm} In this project, we have deliberately avoided creating separate, isolated codebases for each game mode that we would like to have. Instead, we designed a unified structure, which contains all game modes under one implementation. This will let us take advantage of the object-oriented features of C++ - that is classes introduced in C++11—to achieve modularity and expandability. By doing so, we can easily modify or extend the project with more game modes in the future without rewriting the whole codebase.
+
+\subsubsection{Class Design}
+\label{subsubsec:class-design}
+
+\hspace{1cm} The game of Poker was implemented by using the C++ programming language with SDL2 library and IDE Visual Studio Code. For this, we used the C++11 class feature to design and implement the game. In fact, this usage of classes is beyond the basic requirements of the project. We did it for the following two main reasons:
+\begin{enumerate}
+    \item \textbf{Pratical Learning}: This exercise used classes, which is good programming practice and prepares us for the future, more complex projects.
+    \item \textbf{Efficiency}: Classes allow for encapsulation of data and methods, making it easier to extend functionality and organize compared to the traditional struct in C99.
+\end{enumerate}
+
+\hspace{1cm} In this project, we used classes in a way similar to how struct would be used in C99, with the added flexibility - thanks to encapsulation - of being able to pack both data and behavior. This allowed us to create better-organized code that is maintainable and more readable.
+
+\vspace{0.5cm}
+
+\hspace{1cm} So we will explain each of the class we've implemented for this project.
+
+\begin{enumerate}
+    \item \textbf{Card}: This class is used to represent a single card in a standard 52-card deck. This class is used to define the suit and rank of a card. The suit and rank are represented by two enumerations, \texttt{Suits} and \texttt{Ranks}, respectively. The enumerate variable is initialized with the values of \texttt{-1} to \texttt{12} for the ranks and \texttt{-1} to \texttt{3} for the suits. The class also contains a method for printing the card to the console at the early state of the project. \href{https://github.com}{Card Implementation}.
+    \begin{itemize}
+        \item \textbf{\texttt{string suitToString()}}: This method converts the suit of the card to a string representation via a switch statement.
+        \item \textbf{\texttt{string rankToString()}}: This method converts the rank of the card to a string representation via a switch statement.
+    \end{itemize}
+
+    \item \textbf{Deck}: This class is used to represent a Standard 52-card deck. This class is built up using the \texttt{Card} class. The main idea is having an array of 52 objects of the type \texttt{Card} (Card cards[52]). In this file, we develop the methods for shuffling the deck, dealing a card, and reseting the deck. \href{https://github.com}{Deck Implementation}.
+    \begin{itemize}
+        \item \textbf{\texttt{void setup()}}: This method initializes the deck with 52 cards, one of each rank and suit.
+        \item \textbf{\texttt{void shuffle()}}: This method uses the \texttt{std::shuffle} function with a Mersenne Twister random number generator (\texttt{std::mt19937}) seeded with the current time (\texttt{std::time(0)}) to ensure a unique shuffle each time.
+        \item \textbf{\texttt{void reset()}}: This method simply calls the \texttt{setup()} method and then the \texttt{shuffle()} method to reset the deck. Also set the remaining card back to 52.
+    \end{itemize}
+
+    \item \textbf{Strength}: This class is for represent the strength of a hand in Poker. This class contains methods for calculating the strength of a hand, checking the rank of the hand as we've mentioned above \hyperref[subsubsec:poker-hand-rankings]{Poker Hand Rankings}.
+
+    \item \textbf{Hand}: This class is used to represent a hand of card in the game. This class is built up using the \texttt{Card} class. The main idea is having an array of 5 objects of the type \texttt{Card} (\texttt{Card cards[5]}). In this file we develop the methods for sorting the hand, checking the rank of the hand, and evaluating the hand. \href{https://github.com}{Hand Implementation}.
+    \begin{itemize}
+        \item \textbf{\texttt{void show()}}: A simple for loop that prints out the cards in the hand.
+        \item \textbf{\texttt{void sortCards()}}: For this to work, we configure the standard sort function to sort the cards in the hand by rank using a lambda function. Then assign those card into a \texttt{Card sortedCards[5]} array.
+        \item \textbf{\texttt{void evaluateHand()}}: This method calls the \texttt{sortCards()} method and the \texttt{Strength} class to use its methods to evaluate the hand.
+    \end{itemize}
+\end{enumerate}
