@@ -6,7 +6,13 @@
 - [C++](https://cplusplus.com/) programming language for developing the game logic.
 - [Makefile](https://medium.com/@ayogun/what-is-makefile-and-make-how-do-we-use-it-3828f2ee8cb) a special file for running all necessary files.
 
+## Demo
+
+[![Thumbnail](https://img.youtube.com/vi/OA0v6xG21N4/0.jpg)](https://www.youtube.com/watch?v=OA0v6xG21N4)
+
+
 ## How to use?
+
 
 ### Some Makefile commands
 

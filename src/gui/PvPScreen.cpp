@@ -117,6 +117,7 @@ void renderPvPScreen(GameEngine* game) {
                 game->handleButtonHover(nextButtonTexture, mouseX, mouseY, NEXT_BUTTON_X, NEXT_BUTTON_Y, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT);
             } else if (game->currentPlayer == static_cast<int>(gameplay.numberOfPlayers)) {
                 // Save player data after dealing cards and determining the winner
+                std::cout << "here" << '\n';
                 if (!isSavedPvP) {
                     isSavedPvP = true;
                     gameplay.whoWins();
